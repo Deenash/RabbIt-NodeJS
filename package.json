@@ -1,0 +1,21 @@
+{
+  "name": "RabbIt",
+  "version": "0.1.0",
+  "description": "RabbIt",
+  "main": "jokes.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "node.js",
+    "eclipse",
+    "nodeclipse"
+  ],
+  "author": "",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "node-fetch": "^1.7.3"
+  }
+}

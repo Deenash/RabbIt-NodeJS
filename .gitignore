@@ -57,3 +57,10 @@ typings/
 # dotenv environment variables file
 .env
 
+#other Files
+.jshintrc
+.project
+.settings/
+.sublime-project
+.tern-project
+build.gradle
