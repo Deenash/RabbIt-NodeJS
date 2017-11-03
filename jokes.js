@@ -1,16 +1,13 @@
 var fetch = require('node-fetch');
 
-//function reduceString(result, temp){
-//	return result + '\n- ' + temp;
-//}
-
 fetch('http://api.icndb.com/jokes/random/5?limitTo=[nerdy]')
-.then(
-  function(res) {
-    return res.json();
-	},
-  function(err) {
-  	console.log('error');  
+	.then(function(res){
+		if (res.ok) {
+			return res.json();
+		} else {
+			throw res.statusText;
+		}
+	}) 
 }).then(function(body){
 	var values = body.value;
 	var jokes = [];
@@ -20,8 +17,6 @@ fetch('http://api.icndb.com/jokes/random/5?limitTo=[nerdy]')
 		}
 	}
 	if(jokes && jokes.length > 0) {
-		// we can also use the Array.reduce here
-		// console.log('- ' + jokes.reduce(reduceString));
 	    for(joke in jokes){
 	    	console.log('- ' + jokes[joke]);
 	    }
