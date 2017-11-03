@@ -1,5 +1,10 @@
 var fetch = require('node-fetch');
 
+function printJokes(values) {
+  var jokes = values.reduce((result,next) => result + "- " + next.joke + "\n" , "");
+	console.log(jokes);
+}
+
 fetch('http://api.icndb.com/jokes/random/5?limitTo=[nerdy]')
 	.then(function(res){
 		if (res.ok) {
@@ -7,19 +12,15 @@ fetch('http://api.icndb.com/jokes/random/5?limitTo=[nerdy]')
 		} else {
 			throw res.statusText;
 		}
-	}) 
-}).then(function(body){
-	var values = body.value;
-	var jokes = [];
-	if(values){
-		for(value in values){
-			jokes.push(values[value].joke);
+	})
+	.then(function(jsonBody){
+		var values =  jsonBody.value;
+		if(!values){
+			throw "No Values Recieved from the API. Actual Response " + jsonBody;
+		} else {
+			printJokes(values);
 		}
-	}
-	if(jokes && jokes.length > 0) {
-	    for(joke in jokes){
-	    	console.log('- ' + jokes[joke]);
-	    }
-	}
+	})
+	.catch(function(err){
+		console.log(err);
 });
-
